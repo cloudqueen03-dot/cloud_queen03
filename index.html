@@ -515,67 +515,105 @@ Made fresh with traditional recipes and heartfelt care.
     </div>
   </div>
 
-  <script>
-    // --- MENU DATA (Organized by Category) ---
+
+
+
+
+
+
+
+
+<script>
+    // --- UPDATED MENU DATA ---
     const menuCategories = [
       {
         name: "Maggi",
         icon: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=100&q=80",
         items: [
-          { id: 1, name: "Plan Maggi", price: 40, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Classic Masala Maggi" },
-          { id: 2, name: "Masala Maggi", price: 40, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Extra spicy masala" },
-          { id: 3, name: "Cheese Maggi", price: 50, img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80", desc: "Loaded with cheese" },
-          { id: 4, name: "Veggies Maggi", price: 50, img: "https://images.unsplash.com/photo-1585238142015-6b3f8b9d3b5d?w=600&q=80", desc: "Fresh veggies added" },
-          { id: 5, name: "Egg Maggi", price: 50, img: "https://images.unsplash.com/photo-1606503825008-909a67e63c3d?w=600&q=80", desc: "Topped with egg" },
-          { id: 6, name: "Chilli Garlic Maggi", price: 50, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Spicy garlic flavor" }
+          { id: 1, name: "Plain Maggi", price: 40, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Simple and classic" },
+          { id: 2, name: "Butter Maggi", price: 60, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Rich buttery taste" },
+          { id: 3, name: "Cheese Maggi", price: 60, img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80", desc: "Loaded with cheese" },
+          { id: 4, name: "Corn Maggi", price: 70, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Sweet corn toppings" },
+          { id: 5, name: "Vegetable Maggi", price: 80, img: "https://images.unsplash.com/photo-1585238142015-6b3f8b9d3b5d?w=600&q=80", desc: "Fresh veggies added" },
+          { id: 6, name: "Peri Peri Maggi", price: 80, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80", desc: "Spicy peri peri flavor" }
         ]
       },
       {
         name: "Pasta",
         icon: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=100&q=80",
         items: [
-          { id: 7, name: "Plan Pasta", price: 50, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80", desc: "Simple tomato pasta" },
-          { id: 8, name: "Masala Pasta", price: 50, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80", desc: "Indian style masala" },
-          { id: 9, name: "Veggies Pasta", price: 60, img: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80", desc: "Mixed veggies" },
-          { id: 10, name: "Cheese Pasta", price: 70, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", desc: "Cheesy goodness" },
-          { id: 11, name: "Red Sauce Pasta", price: 70, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80", desc: "Tangy tomato sauce" },
-          { id: 12, name: "White Sauce Pasta", price: 80, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", desc: "Creamy white sauce" }
+          { id: 7, name: "Plain Pasta", price: 50, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80", desc: "Simple tomato pasta" },
+          { id: 8, name: "Vegetable Masala Pasta", price: 60, img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80", desc: "Indian style masala" },
+          { id: 9, name: "Cheese Pasta", price: 60, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", desc: "Cheesy goodness" },
+          { id: 10, name: "Cheese Melt Pasta", price: 70, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", desc: "Extra melted cheese" },
+          { id: 11, name: "Schezwan Pasta", price: 70, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80", desc: "Spicy schezwan sauce" },
+          { id: 12, name: "Red Sauce Pasta", price: 70, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&q=80", desc: "Tangy tomato sauce" },
+          { id: 13, name: "White Sauce Pasta", price: 80, img: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80", desc: "Creamy white sauce" }
         ]
       },
       {
         name: "Waffles",
         icon: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=100&q=80",
         items: [
-          { id: 13, name: "Classic Waffle", price: 30, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=600&q=80", desc: "Plain and crispy" },
-          { id: 14, name: "Choco Waffle", price: 40, img: "https://images.unsplash.com/photo-1584558632001-e543b6c5e6ad?w=600&q=80", desc: "Chocolate coated" },
-          { id: 15, name: "Choco Chips Waffle", price: 50, img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&q=80", desc: "Loaded with chips" },
-          { id: 16, name: "Gems Waffle", price: 50, img: "https://images.unsplash.com/photo-1584558632001-e543b6c5e6ad?w=600&q=80", desc: "Colorful gems topping" },
-          { id: 17, name: "Oreo Waffle", price: 60, img: "https://images.unsplash.com/photo-1623326050674-223bdc656872?w=600&q=80", desc: "Oreo crumble" }
+          { id: 14, name: "Classic Waffle", price: 30, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=600&q=80", desc: "Plain and crispy" },
+          { id: 15, name: "Chocolate Waffle", price: 30, img: "https://images.unsplash.com/photo-1584558632001-e543b6c5e6ad?w=600&q=80", desc: "Chocolate coated" },
+          { id: 16, name: "KitKat Waffle", price: 40, img: "https://images.unsplash.com/photo-1584558632001-e543b6c5e6ad?w=600&q=80", desc: "KitKat chunks" },
+          { id: 17, name: "Dark Chocolate Waffle", price: 40, img: "https://images.unsplash.com/photo-1584558632001-e543b6c5e6ad?w=600&q=80", desc: "Rich dark chocolate" },
+          { id: 18, name: "White Chocolate Waffle", price: 40, img: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=600&q=80", desc: "Sweet white chocolate" },
+          { id: 19, name: "Choco Chips Waffle", price: 40, img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&q=80", desc: "Loaded with chips" }
+        ]
+      },
+      {
+        name: "Fruits & Beverages",
+        icon: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=100&q=80",
+        items: [
+          { id: 20, name: "Buttermilk", price: 20, img: "https://images.unsplash.com/photo-1587049016823-69ef9d68bd44?w=600&q=80", desc: "Refreshingly cool" },
+          { id: 21, name: "Fruit Mini Bowl", price: 70, img: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=600&q=80", desc: "Assorted seasonal fruits" },
+          { id: 22, name: "Fruit Big Bowl", price: 120, img: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=600&q=80", desc: "Large serving of fruits" },
+          { id: 23, name: "Fruit Bowl", price: 150, img: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=600&q=80", desc: "Premium fruit selection" }
         ]
       },
       {
         name: "Sandwich",
         icon: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=100&q=80",
         items: [
-          { id: 18, name: "Vegetable Sandwich", price: 50, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Fresh veggies" },
-          { id: 19, name: "Cheese Sandwich", price: 60, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Cheesy filling" },
-          { id: 20, name: "Chocolate Sandwich", price: 60, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Sweet chocolate" },
-          { id: 21, name: "Paneer Sandwich", price: 70, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Spicy paneer" },
-          { id: 22, name: "Club Sandwich", price: 80, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Triple layer" },
-          { id: 23, name: "Chilli Cheese Sandwich", price: 80, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Spicy & cheesy" }
+          { id: 24, name: "Vegetable Sandwich", price: 50, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Fresh veggies" },
+          { id: 25, name: "Aloo Masala Sandwich", price: 50, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Spicy potato filling" },
+          { id: 26, name: "Bread & Butter", price: 40, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80", desc: "Simple & classic" },
+          { id: 27, name: "Paneer Sandwich", price: 70, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Spicy paneer" },
+          { id: 28, name: "Cheese Paneer Sandwich", price: 70, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Cheese & paneer mix" },
+          { id: 29, name: "Cheese Garlic Sandwich", price: 80, img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80", desc: "Garlic butter & cheese" },
+          { id: 30, name: "Garlic Bread", price: 100, img: "https://images.unsplash.com/photo-1619535860434-ba1d8fa12536?w=600&q=80", desc: "Crispy garlic toast" }
         ]
       },
       {
-        name: "Breakfast & Beverages",
-        icon: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80",
+        name: "Breakfast",
+        icon: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=100&q=80",
         items: [
-          { id: 24, name: "Bread Butter", price: 30, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80", desc: "Simple & classic" },
-          { id: 25, name: "Bread Jam", price: 30, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80", desc: "Sweet start" },
-          { id: 26, name: "Poha", price: 30, img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&q=80", desc: "Flattened rice" },
-          { id: 27, name: "Upma", price: 30, img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&q=80", desc: "Semolina savory" },
-          { id: 28, name: "Bread Butter Toast", price: 40, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80", desc: "Crispy toast" },
-          { id: 29, name: "Aloo Paratha", price: 50, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80", desc: "Stuffed potato bread" },
-          { id: 30, name: "Buttermilk", price: 20, img: "https://images.unsplash.com/photo-1587049016823-69ef9d68bd44?w=600&q=80", desc: "Refreshingly cool" }
+          { id: 31, name: "Masala Chai (1 Cup)", price: 20, img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&q=80", desc: "Hot Indian tea" },
+          { id: 32, name: "Gujarati Bhakri (2 Pcs)", price: 40, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80", desc: "Traditional flatbread" },
+          { id: 33, name: "Sindhi Koki with Curd", price: 60, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80", desc: "Spiced flatbread" },
+          { id: 34, name: "Poha with Papad", price: 60, img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&q=80", desc: "Flattened rice snack" },
+          { id: 35, name: "Dal Puri (Dal + 4 Puris)", price: 60, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80", desc: "Fried bread with lentils" },
+          { id: 36, name: "Aloo Paratha with Curd", price: 60, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80", desc: "Potato stuffed bread" }
+        ]
+      },
+      {
+        name: "Lunch",
+        icon: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=100&q=80",
+        items: [
+          { id: 37, name: "Mini Thali", price: 120, desc: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" },
+          { id: 38, name: "Regular Thali", price: 150, desc: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" },
+          { id: 39, name: "Royal Thali", price: 200, desc: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" }
+        ]
+      },
+      {
+        name: "Dinner",
+        icon: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=100&q=80",
+        items: [
+          { id: 40, name: "Mini Thali", price: 120, desc: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" },
+          { id: 41, name: "Regular Thali", price: 150, desc: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" },
+          { id: 42, name: "Royal Thali", price: 200, desc: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" }
         ]
       }
     ];
@@ -628,8 +666,6 @@ Made fresh with traditional recipes and heartfelt care.
       const items = document.querySelectorAll('.accordion-item');
       const clickedItem = items[index];
       
-      // Simple toggle or 'one open at a time' logic
-      // Here we use 'one open at a time' for cleaner UX
       items.forEach((item, i) => {
         if (i === index) {
           item.classList.toggle('active');
@@ -663,7 +699,6 @@ Made fresh with traditional recipes and heartfelt care.
       
       updateCartUI();
       
-      // Visual feedback
       floatCartCount.classList.add('pulse-animation');
       setTimeout(() => floatCartCount.classList.remove('pulse-animation'), 400);
     }
@@ -838,7 +873,7 @@ Made fresh with traditional recipes and heartfelt care.
     window.addEventListener('load', () => {
        setTimeout(() => {
          document.getElementById('preloader').classList.add('loaded');
-       }, 1500); // Wait for animation to finish
+       }, 1500);
     });
 
     // Init
@@ -846,5 +881,27 @@ Made fresh with traditional recipes and heartfelt care.
     updateCartUI();
     observeElements();
   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </body>
 </html>
