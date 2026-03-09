@@ -555,68 +555,65 @@
           </div>
         </div>
 
-
-        <div class="info-box">
-           <h4 class="font-bold text-sm text-[var(--fg)] mb-2">Payment Instructions</h4>
-           <p class="text-xs text-[var(--fg-muted)] mb-2">
-              We currently accept <strong>Prepaid Orders Only</strong>.
-           </p>
-           <ol class="list-decimal list-inside text-xs text-[var(--fg-muted)] space-y-1">
-              <li>Submit this form to open WhatsApp.</li>
-              <li><strong>Ask us for the exact delivery charges</strong> before paying.</li>
-              <li>Make the payment & send the screenshot on WhatsApp to confirm.</li>
-           </ol>
+        <div id="deliveryFields" class="space-y-6 hidden">
+          <div>
+            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Delivery Address</label>
+            <textarea id="custAddress" rows="3" placeholder="Full Address with Landmark"></textarea>
+          </div>
         </div>
+
+
 <!-- changes in this given box -->
 
 
 
+<div style="max-width:900px;margin:auto;border:1px solid #e5e5e5;border-radius:12px;padding:18px;background:#ffffff;font-family:Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,0.05);">
 
-        
+  <div style="display:flex;flex-wrap:wrap;gap:15px;">
 
+    <!-- Pickup -->
+    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">📍 Pickup</h4>
 
+      <p style="margin:0 0 8px 0;font-size:12px;color:#555;line-height:1.5;">
+        B-501 Sarthi Residency, Naroda,<br>
+        Ahmedabad – 382330
+      </p>
 
+      <a href="https://maps.app.goo.gl/oQX7DULRNhTi8MC8A" target="_blank"
+        style="display:inline-block;font-size:12px;padding:6px 10px;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;">
+        Open Location
+      </a>
+    </div>
 
-<!-- new updates for the pickup and so on things -->
-<div style="max-width:850px;margin:auto;font-family:Arial, sans-serif;display:flex;flex-wrap:wrap;gap:15px;">
+    <!-- Delivery -->
+    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">🚚 Delivery</h4>
 
-  <!-- Pickup -->
-  <div style="flex:1 1 300px;border:1px solid #eee;border-radius:10px;padding:16px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
-    
-    <h4 style="margin:0 0 8px 0;font-size:15px;color:#222;">📍 Pickup</h4>
+      <p style="margin:0;font-size:12px;color:#555;line-height:1.5;">
+        Delivery charges extra.  
+        Order will be delivered by our delivery partner.
+      </p>
+    </div>
 
-    <p style="margin:0 0 10px 0;font-size:13px;color:#555;line-height:1.5;">
-      B-501 Sarthi Residency, Naroda,<br>
-      Ahmedabad – 382330
-    </p>
+    <!-- Payment -->
+    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">💳 Payment</h4>
 
-    <a href="https://maps.app.goo.gl/oQX7DULRNhTi8MC8A" target="_blank"
-       style="display:inline-block;padding:7px 12px;font-size:12px;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;">
-       Open Location
-    </a>
+      <p style="margin:0 0 8px 0;font-size:12px;color:#555;">
+        We accept <strong>Prepaid Orders Only</strong>.
+      </p>
 
-  </div>
-
-
-  <!-- Delivery -->
-  <div style="flex:1 1 300px;border:1px solid #eee;border-radius:10px;padding:16px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.06);">
-    
-    <h4 style="margin:0 0 8px 0;font-size:15px;color:#222;">🚚 Delivery</h4>
-
-    <p style="margin:0;font-size:13px;color:#555;line-height:1.5;">
-      Delivery charges extra. Your order will be delivered by our delivery partner.
-    </p>
+      <ol style="margin:0;padding-left:16px;font-size:12px;color:#555;line-height:1.5;">
+        <li>Submit the form to open WhatsApp.</li>
+        <li>Ask delivery charges before paying.</li>
+        <li>Send payment screenshot on WhatsApp.</li>
+      </ol>
+    </div>
 
   </div>
 
 </div>
-
-
-
-
-
-
-
 
 
 
