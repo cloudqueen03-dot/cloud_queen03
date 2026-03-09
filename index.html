@@ -1,566 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Cloud Queen Kitchen</title>
-  <link rel="icon" type="image/png" href="22.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #F8F7F4;
-      --bg-alt: #EFECE6;
-      --fg: #1A1A1A;
-      --fg-muted: #666666;
-      --accent: #2F5E46;
-      --accent-light: #3B7A5A;
-      --gold: #C9A962;
-      --card: #FFFFFF;
-      --border: #E5E2DB;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cloud Queen Kitchen</title>
+<link rel="icon" type="image/png" href="22.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg: #F8F7F4;
+--bg-alt: #EFECE6;
+--fg: #1A1A1A;
+--fg-muted: #666666;
+--accent: #2F5E46;
+--accent-light: #3B7A5A;
+--gold: #C9A962;
+--card: #FFFFFF;
+--border: #E5E2DB;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--fg);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-    .font-display { font-family: 'Cormorant Garamond', serif; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: var(--bg);
+color: var(--fg);
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+}
 
-    /* Preloader Styles */
-    #preloader {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-    #preloader.loaded {
-      opacity: 0;
-      visibility: hidden;
-    }
-    .loader-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--accent);
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: textReveal 1s ease forwards;
-    }
-    .loader-logo {
-      width: 80px;
-      height: 80px;
-      border: 2px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes textReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(47, 94, 70, 0.2); }
-      70% { box-shadow: 0 0 0 20px rgba(47, 94, 70, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(47, 94, 70, 0); }
-    }
+.font-display { font-family: 'Cormorant Garamond', serif; }
 
-    /* Reveal Animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* Preloader Styles */
+#preloader {
+position: fixed;
+inset: 0;
+background: var(--bg);
+z-index: 9999;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#preloader.loaded {
+opacity: 0;
+visibility: hidden;
+}
+.loader-text {
+font-family: 'Cormorant Garamond', serif;
+font-size: 2rem;
+color: var(--accent);
+text-align: center;
+opacity: 0;
+transform: translateY(20px);
+animation: textReveal 1s ease forwards;
+}
+.loader-logo {
+width: 80px;
+height: 80px;
+border: 2px solid var(--border);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.5rem;
+animation: pulse 2s infinite;
+}
 
-    /* Components */
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .btn-primary:hover:not(:disabled) { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(47, 94, 70, 0.2); }
-    .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+@keyframes textReveal {
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+0% { box-shadow: 0 0 0 0 rgba(47, 94, 70, 0.2); }
+70% { box-shadow: 0 0 0 20px rgba(47, 94, 70, 0); }
+100% { box-shadow: 0 0 0 0 rgba(47, 94, 70, 0); }
+}
 
-    /* Accordion Styles */
-    .accordion-item {
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .accordion-header {
-      width: 100%;
-      padding: 20px 0;
-      background: transparent;
-      border: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      text-align: left;
-      transition: color 0.3s;
-    }
-    .accordion-header:hover { color: var(--accent); }
-    .accordion-icon {
-      transition: transform 0.3s ease;
-    }
-    .accordion-item.active .accordion-icon {
-      transform: rotate(180deg);
-    }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-out;
-    }
-    .accordion-item.active .accordion-content {
-      max-height: 2000px; /* Arbitrary large height */
-    }
+/* Reveal Animations */
+.reveal {
+opacity: 0;
+transform: translateY(20px);
+transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.active {
+opacity: 1;
+transform: translateY(0);
+}
 
-    /* Menu List Item */
-    .menu-list-item {
-      display: flex;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.03);
-      align-items: center;
-    }
-    .menu-list-item:last-child { border-bottom: none; }
-    .menu-list-item img {
-      width: 70px;
-      height: 70px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    
-    /* Sidebar & Modal */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      max-width: 480px;
-      height: 100vh;
-      background: white;
-      z-index: 1001;
-      transform: translateX(100%);
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: -20px 0 60px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar.open { transform: translateX(0); }
-    
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    .modal-overlay.open { opacity: 1; visibility: visible; }
+/* Components */
+.btn-primary {
+background: var(--accent);
+color: white;
+padding: 14px 28px;
+border-radius: 4px;
+font-weight: 600;
+transition: all 0.3s ease;
+border: none;
+cursor: pointer;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+font-size: 14px;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+.btn-primary:hover:not(:disabled) { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(47, 94, 70, 0.2); }
+.btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
 
-    /* Input Styling */
-    input, textarea, select {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      background: #FAFAFA;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 15px;
-      transition: all 0.3s;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: white;
-      box-shadow: 0 0 0 3px rgba(47, 94, 70, 0.1);
-    }
+/* Accordion Styles */
+.accordion-item {
+border-bottom: 1px solid var(--border);
+overflow: hidden;
+}
+.accordion-header {
+width: 100%;
+padding: 20px 0;
+background: transparent;
+border: none;
+display: flex;
+justify-content: space-between;
+align-items: center;
+cursor: pointer;
+text-align: left;
+transition: color 0.3s;
+}
+.accordion-header:hover { color: var(--accent); }
+.accordion-icon {
+transition: transform 0.3s ease;
+}
+.accordion-item.active .accordion-icon {
+transform: rotate(180deg);
+}
+.accordion-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s ease-out;
+}
+.accordion-item.active .accordion-content {
+max-height: 2000px; /* Arbitrary large height */
+}
 
-    /* Floating Elements */
-    .floating-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 20px rgba(47, 94, 70, 0.3);
-      cursor: pointer;
-      z-index: 99;
-      transition: all 0.3s;
-      border: none;
-    }
-    .floating-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(47, 94, 70, 0.4); }
-    
-    .info-box {
-      background-color: #FFF8E1;
-      border-left: 4px solid var(--gold);
-      padding: 16px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-    
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  </style>
+/* Menu List Item */
+.menu-list-item {
+display: flex;
+gap: 16px;
+padding: 16px 0;
+border-bottom: 1px solid rgba(0,0,0,0.03);
+align-items: center;
+}
+.menu-list-item:last-child { border-bottom: none; }
+.menu-list-item img {
+width: 70px;
+height: 70px;
+border-radius: 8px;
+object-fit: cover;
+flex-shrink: 0;
+}
+
+/* Sidebar & Modal */
+.sidebar {
+position: fixed;
+top: 0;
+right: 0;
+width: 100%;
+max-width: 480px;
+height: 100vh;
+background: white;
+z-index: 1001;
+transform: translateX(100%);
+transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+box-shadow: -20px 0 60px rgba(0,0,0,0.1);
+display: flex;
+flex-direction: column;
+}
+.sidebar.open { transform: translateX(0); }
+
+.modal-overlay {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.6);
+backdrop-filter: blur(4px);
+z-index: 1000;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+
+/* Input Styling */
+input, textarea, select {
+width: 100%;
+padding: 14px 16px;
+border: 1px solid var(--border);
+background: #FAFAFA;
+border-radius: 4px;
+font-family: inherit;
+font-size: 15px;
+transition: all 0.3s;
+}
+input:focus, textarea:focus, select:focus {
+outline: none;
+border-color: var(--accent);
+background: white;
+box-shadow: 0 0 0 3px rgba(47, 94, 70, 0.1);
+}
+
+/* Floating Elements */
+.floating-btn {
+position: fixed;
+bottom: 24px;
+right: 24px;
+width: 64px;
+height: 64px;
+border-radius: 50%;
+background: var(--accent);
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 6px 20px rgba(47, 94, 70, 0.3);
+cursor: pointer;
+z-index: 99;
+transition: all 0.3s;
+border: none;
+}
+.floating-btn:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(47, 94, 70, 0.4); }
+
+.info-box {
+background-color: #FFF8E1;
+border-left: 4px solid var(--gold);
+padding: 16px;
+border-radius: 4px;
+margin-bottom: 20px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="loader-logo">
-      
-    
-      
-      
+<!-- Preloader -->
+<div id="preloader">
+<div class="loader-logo">
+
+
+
+
 <img src="image.png" alt="Chef" class="w-full h-full object-cover">
 
 
-      
-    </div>
-    <div class="loader-text" style="animation-delay: 0.2s;">The Cloud Kitchen</div>
-    <div class="loader-text text-base font-sans text-[var(--fg-muted)] mt-2" style="animation-delay: 0.4s; font-family: 'Inter', sans-serif;">by Sadhana Chetwani</div>
-  </div>
 
-  <!-- Navigation -->
- 
+</div>
+<div class="loader-text" style="animation-delay: 0.2s;">The Cloud Kitchen</div>
+<div class="loader-text text-base font-sans text-[var(--fg-muted)] mt-2" style="animation-delay: 0.4s; font-family: 'Inter', sans-serif;">by Sadhana Chetwani</div>
+</div>
+
+<!-- Navigation -->
+
 
 
 
 
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)]">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <!-- Updated Logo Image -->
-        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--accent)] shadow-sm">
-            <img src="1.png" alt="Cloud Queen Logo" class="w-full h-full object-cover">
-        </div>
-        <div>
-          <span class="font-display text-2xl font-bold text-[var(--gold)] block leading-none">Cloud Queen</span>
-        </div>
-      </a>
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a href="#" class="flex items-center gap-3">
+<!-- Updated Logo Image -->
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--accent)] shadow-sm">
+<img src="1.png" alt="Cloud Queen Logo" class="w-full h-full object-cover">
+</div>
+<div>
+<span class="font-display text-2xl font-bold text-[var(--gold)] block leading-none">Cloud Queen</span>
+</div>
+</a>
 
 
 
-      
-      <div class="hidden md:flex items-center gap-4">
-         <a href="" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm font-medium">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-            Coming Soon Zomato 
-         </a>
-         <button onclick="toggleCart()" class="relative p-2 group">
-            <svg class="w-6 h-6 text-[var(--fg)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l1.405 5.216m0 0l1.406 5.215a1.121 1.121 0 001.087.836h7.738a1.121 1.121 0 001.087-.836l1.406-5.215m-14.124 0h14.124m0 0l.965-3.58A1.122 1.122 0 0021.48 3H12.82"/></svg>
-            <span id="navCartCount" class="absolute -top-1 -right-1 w-5 h-5 bg-[var(--gold)] text-white text-xs rounded-full flex items-center justify-center font-bold opacity-0 transition-opacity">0</span>
-         </button>
-      </div>
+
+<div class="hidden md:flex items-center gap-4">
+<a href="" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors text-sm font-medium">
+<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+Coming Soon Zomato
+</a>
+<button onclick="toggleCart()" class="relative p-2 group">
+<svg class="w-6 h-6 text-[var(--fg)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l1.405 5.216m0 0l1.406 5.215a1.121 1.121 0 001.087.836h7.738a1.121 1.121 0 001.087-.836l1.406-5.215m-14.124 0h14.124m0 0l.965-3.58A1.122 1.122 0 0021.48 3H12.82"/></svg>
+<span id="navCartCount" class="absolute -top-1 -right-1 w-5 h-5 bg-[var(--gold)] text-white text-xs rounded-full flex items-center justify-center font-bold opacity-0 transition-opacity">0</span>
+</button>
+</div>
 
 
 
-      
+
 <button id="menuBtn" class="md:hidden p-2" aria-label="Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
-      </button>
-    </div>
-  </nav>
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+</button>
+</div>
+</nav>
 
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="fixed inset-0 bg-[var(--bg)] z-40 transform translate-x-full transition-transform duration-500 md:hidden pt-24 px-6">
-    <a href="#menu" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Menu</a>
-    <a href="#about" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Story</a>
-    <a href="#contact" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Contact</a>
-    <div class="mt-6">
-      <a href="https://www.zomato.com/ahmedabad/restaurants/karnavati-dabeli" target="_blank" class="btn-primary w-full justify-center bg-red-500 hover:bg-red-600">
-        Order on Zomato
-      </a>
-    </div>
-  </div>
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="fixed inset-0 bg-[var(--bg)] z-40 transform translate-x-full transition-transform duration-500 md:hidden pt-24 px-6">
+<a href="#menu" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Menu</a>
+<a href="#about" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Story</a>
+<a href="#contact" class="block py-4 text-2xl font-display border-b border-[var(--border)] mobile-link">Contact</a>
+<div class="mt-6">
+<a href="https://www.zomato.com/ahmedabad/restaurants/karnavati-dabeli" target="_blank" class="btn-primary w-full justify-center bg-red-500 hover:bg-red-600">
+Order on Zomato
+</a>
+</div>
+</div>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center pt-20 bg-[var(--bg)]">
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-[var(--bg-alt)] clip-path-unique hidden lg:block"></div>
-    
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="py-12 lg:py-0">
-        <span class="inline-block px-3 py-1 border border-[var(--accent)] text-[var(--accent)] text-xs font-bold uppercase tracking-widest mb-6 reveal">Home Cooked Delights</span>
-        <h1 class="font-display text-6xl lg:text-8xl font-bold text-[var(--fg)] leading-[0.9] mb-6 reveal" style="transition-delay: 0.1s">
-          The Cloud<br>Queen<br><span class="text-[var(--accent)]">Kitchen</span>
-        </h1>
-        <p class="text-lg text-[var(--fg-muted)] max-w-md mb-10 leading-relaxed reveal" style="transition-delay: 0.2s">
-          Experience the authentic taste of homemade comfort food. Fresh ingredients, traditional recipes, and a touch of royal love in every bite.
-        </p>
-        
-        <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 0.3s">
-          <a href="#menu" class="btn-primary">Explore Menu</a>
-          <a href="https://wa.me/919510917723?text=Hi%20Cloud%20Queen%2C%20I%20have%20a%20question." target="_blank" class="btn-outline inline-flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Ask a Question
-          </a>
-        </div>
-      </div>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 bg-[var(--bg)]">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-[var(--bg-alt)] clip-path-unique hidden lg:block"></div>
 
-      <div class="relative h-[500px] lg:h-auto reveal" style="transition-delay: 0.4s">
-        <div class="relative w-full h-full rounded-lg overflow-hidden">
-          <img src="banner.jpeg" alt="Gourmet Dish" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-        </div>
-        
-        <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl max-w-xs border border-[var(--border)]">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-[var(--accent)] rounded-full flex items-center justify-center text-white font-bold">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <p class="text-xs text-[var(--fg-muted)] uppercase tracking-wider">Available Now</p>
-              <p class="font-display text-xl font-bold">Pickup & Delivery</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+<div class="py-12 lg:py-0">
+<span class="inline-block px-3 py-1 border border-[var(--accent)] text-[var(--accent)] text-xs font-bold uppercase tracking-widest mb-6 reveal">Home Cooked Delights</span>
+<h1 class="font-display text-6xl lg:text-8xl font-bold text-[var(--fg)] leading-[0.9] mb-6 reveal" style="transition-delay: 0.1s">
+The Cloud<br>Queen<br><span class="text-[var(--accent)]">Kitchen</span>
+</h1>
+<p class="text-lg text-[var(--fg-muted)] max-w-md mb-10 leading-relaxed reveal" style="transition-delay: 0.2s">
+Experience the authentic taste of homemade comfort food. Fresh ingredients, traditional recipes, and a touch of royal love in every bite.
+</p>
 
-  <!-- Menu Section (Accordion Style) -->
-  <section id="menu" class="py-24 bg-white border-t border-[var(--border)]">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-12 reveal">
-        <span class="text-[var(--accent)] text-sm font-bold uppercase tracking-widest">Our Menu</span>
-        <h2 class="font-display text-5xl font-bold mt-2">Category Selection</h2>
-      </div>
+<div class="flex flex-wrap gap-4 reveal" style="transition-delay: 0.3s">
+<a href="#menu" class="btn-primary">Explore Menu</a>
+<a href="https://wa.me/919510917723?text=Hi%20Cloud%20Queen%2C%20I%20have%20a%20question." target="_blank" class="btn-outline inline-flex items-center gap-2">
+<svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+Ask a Question
+</a>
+</div>
+</div>
 
-      <div id="menuContainer" class="reveal">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
+<div class="relative h-[500px] lg:h-auto reveal" style="transition-delay: 0.4s">
+<div class="relative w-full h-full rounded-lg overflow-hidden">
+<img src="banner.jpeg" alt="Gourmet Dish" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+</div>
+
+<div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl max-w-xs border border-[var(--border)]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-[var(--accent)] rounded-full flex items-center justify-center text-white font-bold">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+</div>
+<div>
+<p class="text-xs text-[var(--fg-muted)] uppercase tracking-wider">Available Now</p>
+<p class="font-display text-xl font-bold">Pickup & Delivery</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Menu Section (Accordion Style) -->
+<section id="menu" class="py-24 bg-white border-t border-[var(--border)]">
+<div class="max-w-4xl mx-auto px-6">
+<div class="text-center mb-12 reveal">
+<span class="text-[var(--accent)] text-sm font-bold uppercase tracking-widest">Our Menu</span>
+<h2 class="font-display text-5xl font-bold mt-2">Category Selection</h2>
+</div>
+
+<div id="menuContainer" class="reveal">
+<!-- Rendered by JS -->
+</div>
+</div>
+</section>
 
 
 
-  
-  <!-- About Section -->
-  <section id="about" class="py-24 bg-[var(--bg-alt)]">
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-      <div class="reveal">
-        <span class="text-[var(--accent)] text-sm font-bold uppercase tracking-widest">The Founder</span>
-        <h2 class="font-display text-5xl font-bold mt-4 mb-6">Sadhana Chetwani</h2>
-        <p class="text-[var(--fg-muted)] leading-relaxed mb-4">
-          The Cloud Queen Kitchen was born from a simple belief: that everyone deserves a taste of home, no matter how busy life gets. As the owner and founder, I, Sadhana Chetwani, have poured my heart into creating a menu that reminds you of family meals and warm kitchens.
-        </p>
-      </div>
-      
-      <div class="relative reveal" style="transition-delay: 0.2s">
-        <div class="absolute -inset-4 bg-white rounded-lg transform -rotate-3"></div>
-        <img src="img.jpeg" alt="Sadhana Chetwani" class="relative w-full h-[460px] object-cover rounded-lg shadow-xl">
-      </div>
-    </div>
-  </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-24 bg-[var(--fg)]">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <span class="text-[var(--gold)] text-sm font-bold uppercase tracking-widest">Get in Touch</span>
-      <h2 class="font-display text-5xl font-bold mt-4 text-white mb-12">Contact Us</h2>
-      
-      <div class="grid md:grid-cols-3 gap-8 text-left">
-        <div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal">
-          <h3 class="font-bold text-white text-lg mb-3">Kitchen Hours</h3>
-          <p class="text-white/60 text-sm">Mon - Sat: 09:00 AM - 10:00 PM</p>
-          <p class="text-white/60 text-sm">Sunday: Closed</p>
-        </div>
-        <div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal" style="transition-delay: 0.1s">
-          <h3 class="font-bold text-white text-lg mb-3">Call Us</h3>
-          <a href="tel:+919510917723" class="text-[var(--gold)] font-medium hover:underline">+91 95109 17723</a>
-        </div>
-        <div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal" style="transition-delay: 0.2s">
-          <h3 class="font-bold text-white text-lg mb-3">Email</h3>
-          <a href="mailto:cloudqueen03@gmail.com" class="text-[var(--gold)] font-medium hover:underline">cloudqueen03@gmail.com</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- About Section -->
+<section id="about" class="py-24 bg-[var(--bg-alt)]">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<span class="text-[var(--accent)] text-sm font-bold uppercase tracking-widest">The Founder</span>
+<h2 class="font-display text-5xl font-bold mt-4 mb-6">Sadhana Chetwani</h2>
+<p class="text-[var(--fg-muted)] leading-relaxed mb-4">
+The Cloud Queen Kitchen was born from a simple belief: that everyone deserves a taste of home, no matter how busy life gets. As the owner and founder, I, Sadhana Chetwani, have poured my heart into creating a menu that reminds you of family meals and warm kitchens.
+</p>
+</div>
+
+<div class="relative reveal" style="transition-delay: 0.2s">
+<div class="absolute -inset-4 bg-white rounded-lg transform -rotate-3"></div>
+<img src="img.jpeg" alt="Sadhana Chetwani" class="relative w-full h-[460px] object-cover rounded-lg shadow-xl">
+</div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-24 bg-[var(--fg)]">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<span class="text-[var(--gold)] text-sm font-bold uppercase tracking-widest">Get in Touch</span>
+<h2 class="font-display text-5xl font-bold mt-4 text-white mb-12">Contact Us</h2>
+
+<div class="grid md:grid-cols-3 gap-8 text-left">
+<div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal">
+<h3 class="font-bold text-white text-lg mb-3">Kitchen Hours</h3>
+<p class="text-white/60 text-sm">Mon - Sat: 09:00 AM - 10:00 PM</p>
+<p class="text-white/60 text-sm">Sunday: Closed</p>
+</div>
+<div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal" style="transition-delay: 0.1s">
+<h3 class="font-bold text-white text-lg mb-3">Call Us</h3>
+<a href="tel:+919510917723" class="text-[var(--gold)] font-medium hover:underline">+91 95109 17723</a>
+</div>
+<div class="bg-white/5 p-8 border border-white/10 hover:bg-white/10 transition-colors reveal" style="transition-delay: 0.2s">
+<h3 class="font-bold text-white text-lg mb-3">Email</h3>
+<a href="mailto:cloudqueen03@gmail.com" class="text-[var(--gold)] font-medium hover:underline">cloudqueen03@gmail.com</a>
+</div>
+</div>
+</div>
+</section>
 
 
 
 <!-- new footer -->
 <footer class="bg-[var(--fg)] text-white py-16 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-12 mb-12">
-        <!-- Brand & Address -->
-        <div>
-          <h3 class="font-display text-2xl font-bold mb-4 text-white">THE CLOUD QUEEN – Cloud Kitchen</h3>
-          <p class="text-white/60 text-sm leading-relaxed mb-6">
-            B-501 Sarthi Residency, Behind Vitthal Plaza,<br>
-            Near Sadhi Mata Mandir, GEB Road,<br>
-            Hasanpura Road, Naroda, Ahmedabad – 382330
-          </p>
-          
-          <!-- Social Links -->
-          <div class="flex gap-4 mb-8">
-             <a href="https://www.instagram.com/cloud_queen03/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--accent)] transition-colors" aria-label="Instagram">
-               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-             <a href="https://wa.me/919510917723" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--accent)] transition-colors" aria-label="WhatsApp">
-               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </a>
-             <!-- YouTube Link -->
-             <a href="https://www.youtube.com/@Cloud-queen-03" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF0000] transition-colors" aria-label="YouTube">
-               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-            </a>
-             <!-- Facebook Link -->
-             <a href="https://www.facebook.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1877F2] transition-colors" aria-label="Facebook">
-               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-          </div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-12 mb-12">
+<!-- Brand & Address -->
+<div>
+<h3 class="font-display text-2xl font-bold mb-4 text-white">THE CLOUD QUEEN – Cloud Kitchen</h3>
+<p class="text-white/60 text-sm leading-relaxed mb-6">
+B-501 Sarthi Residency, Behind Vitthal Plaza,<br>
+Near Sadhi Mata Mandir, GEB Road,<br>
+Hasanpura Road, Naroda, Ahmedabad – 382330
+</p>
 
-          <!-- Bulk Orders Info -->
-          <div class="bg-white/5 border border-white/10 rounded p-4">
-            <p class="text-sm text-[var(--gold)] font-semibold">Direct Message me for bulk / festival orders</p>
-            <p class="text-xs text-white/50 mt-1">We also accept party & celebration orders</p>
-            <p class="text-xs text-white/50 mt-1">Call me for inquires</p>
-            <p class="text-xs text-white/50 mt-1">We Do Collobration, Invitations, Pramotions</p>
-          </div>
-        </div>
+<!-- Social Links -->
+<div class="flex gap-4 mb-8">
+<a href="https://www.instagram.com/cloud_queen03/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--accent)] transition-colors" aria-label="Instagram">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</a>
+<a href="https://wa.me/919510917723" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--accent)] transition-colors" aria-label="WhatsApp">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<!-- YouTube Link -->
+<a href="https://www.youtube.com/@Cloud-queen-03" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#FF0000] transition-colors" aria-label="YouTube">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+</a>
+<!-- Facebook Link -->
+<a href="https://www.facebook.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#1877F2] transition-colors" aria-label="Facebook">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a>
+</div>
 
-        <!-- FSSAI Info -->
-        <div class="md:text-right">
-           <div class="inline-block bg-white/5 p-6 rounded border border-white/10 text-left md:text-right">
-             <div class="flex items-center gap-3 mb-3 md:justify-end">
-                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-sm font-bold text-white/80 uppercase tracking-wider">FSSAI Licensed</span>
-             </div>
-             <p class="text-white font-mono font-bold text-xl tracking-wide">20726035000525</p>
-             <p class="text-white/40 text-xs mt-2">Valid Till: 04 March 2027</p>
-           </div>
-        </div>
-      </div>
-      
-      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
-         <p>©2026-2027, The Cloud Queen Kitchen. All rights reserved.</p>
-         <p>Made with love for authentic food lovers.</p>
-      </div>
-    </div>
-  </footer>
+<!-- Bulk Orders Info -->
+<div class="bg-white/5 border border-white/10 rounded p-4">
+<p class="text-sm text-[var(--gold)] font-semibold">Direct Message me for bulk / festival orders</p>
+<p class="text-xs text-white/50 mt-1">We also accept party & celebration orders</p>
+<p class="text-xs text-white/50 mt-1">Call me for inquires</p>
+<p class="text-xs text-white/50 mt-1">We Do Collobration, Invitations, Pramotions</p>
+</div>
+</div>
 
-  <!-- Floating Cart Button -->
-  <button id="floatingCartBtn" class="floating-btn" onclick="toggleCart()">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l1.405 5.216m0 0l1.406 5.215a1.121 1.121 0 001.087.836h7.738a1.121 1.121 0 001.087-.836l1.406-5.215m-14.124 0h14.124m0 0l.965-3.58A1.122 1.122 0 0021.48 3H12.82"/></svg>
-    <span id="floatCartCount" class="absolute -top-1 -right-1 w-6 h-6 bg-[var(--gold)] text-white text-xs rounded-full flex items-center justify-center font-bold opacity-0 transition-opacity">0</span>
-  </button>
+<!-- FSSAI Info -->
+<div class="md:text-right">
+<div class="inline-block bg-white/5 p-6 rounded border border-white/10 text-left md:text-right">
+<div class="flex items-center gap-3 mb-3 md:justify-end">
+<svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+<span class="text-sm font-bold text-white/80 uppercase tracking-wider">FSSAI Licensed</span>
+</div>
+<p class="text-white font-mono font-bold text-xl tracking-wide">20726035000525</p>
+<p class="text-white/40 text-xs mt-2">Valid Till: 04 March 2027</p>
+</div>
+</div>
+</div>
 
-  <!-- Floating WhatsApp Button 
-  <a href="https://wa.me/919510917723" target="_blank" class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform z-50">
-    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a> -->
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+<p>©2026-2027, The Cloud Queen Kitchen. All rights reserved.</p>
+<p>Made with love for authentic food lovers.</p>
+</div>
+</div>
+</footer>
 
-  <!-- Cart Sidebar -->
-  <div id="cartOverlay" class="modal-overlay" onclick="toggleCart()"></div>
-  <div id="cartSidebar" class="sidebar">
-    <div class="p-8 border-b border-[var(--border)] flex justify-between items-center bg-[var(--bg)]">
-      <h3 class="font-display text-2xl font-bold">Your Bag</h3>
-      <button onclick="toggleCart()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
+<!-- Floating Cart Button -->
+<button id="floatingCartBtn" class="floating-btn" onclick="toggleCart()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l1.405 5.216m0 0l1.406 5.215a1.121 1.121 0 001.087.836h7.738a1.121 1.121 0 001.087-.836l1.406-5.215m-14.124 0h14.124m0 0l.965-3.58A1.122 1.122 0 0021.48 3H12.82"/></svg>
+<span id="floatCartCount" class="absolute -top-1 -right-1 w-6 h-6 bg-[var(--gold)] text-white text-xs rounded-full flex items-center justify-center font-bold opacity-0 transition-opacity">0</span>
+</button>
 
-    <div id="cartItems" class="flex-1 overflow-y-auto p-8 bg-white"></div>
+<!-- Floating WhatsApp Button
+<a href="https://wa.me/919510917723" target="_blank" class="fixed bottom-24 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform z-50">
+<svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a> -->
 
-    <div class="p-8 border-t border-[var(--border)] bg-white">
-       <button id="checkoutBtnSidebar" onclick="openCheckout()" class="btn-primary w-full justify-center" disabled>
-         Proceed to Checkout
-       </button>
-    </div>
-  </div>
+<!-- Cart Sidebar -->
+<div id="cartOverlay" class="modal-overlay" onclick="toggleCart()"></div>
+<div id="cartSidebar" class="sidebar">
+<div class="p-8 border-b border-[var(--border)] flex justify-between items-center bg-[var(--bg)]">
+<h3 class="font-display text-2xl font-bold">Your Bag</h3>
+<button onclick="toggleCart()" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+</button>
+</div>
 
-  <!-- Checkout Modal -->
-  <div id="checkoutOverlay" class="modal-overlay" onclick="closeCheckout()"></div>
-  <div id="checkoutModal" class="fixed inset-0 z-[1005] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
-    <div class="bg-white w-full max-w-lg rounded-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
-      
-      <div class="p-8 border-b border-[var(--border)] bg-[var(--bg)] flex justify-between items-center">
-        <h3 class="font-display text-2xl font-bold">Checkout</h3>
-        <button onclick="closeCheckout()" class="p-2 hover:bg-gray-100 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
-      </div>
+<div id="cartItems" class="flex-1 overflow-y-auto p-8 bg-white"></div>
 
-      <form id="checkoutForm" class="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
-        
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-2">Full Name</label>
-          <input type="text" id="custName" placeholder="Your Name" required>
-        </div>
+<div class="p-8 border-t border-[var(--border)] bg-white">
+<button id="checkoutBtnSidebar" onclick="openCheckout()" class="btn-primary w-full justify-center" disabled>
+Proceed to Checkout
+</button>
+</div>
+</div>
 
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-2">Phone Number</label>
-          <input type="tel" id="custPhone" placeholder="+91 XXXXX XXXXX" required>
-        </div>
+<!-- Checkout Modal -->
+<div id="checkoutOverlay" class="modal-overlay" onclick="closeCheckout()"></div>
+<div id="checkoutModal" class="fixed inset-0 z-[1005] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
+<div class="bg-white w-full max-w-lg rounded-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
 
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-2">Order Type</label>
-          <div class="grid grid-cols-2 gap-4">
-            <label class="flex items-center gap-3 p-4 border border-[var(--border)] rounded cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
-              <input type="radio" name="orderType" value="pickup" class="accent-[var(--accent)]" checked onchange="toggleDeliveryFields()">
-              <div>
-                <span class="block font-bold">Pickup</span>
-                <span class="text-xs text-[var(--fg-muted)]">From Kitchen (Free)</span>
-              </div>
-            </label>
-            <label class="flex items-center gap-3 p-4 border border-[var(--border)] rounded cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
-              <input type="radio" name="orderType" value="delivery" class="accent-[var(--accent)]" onchange="toggleDeliveryFields()">
-              <div>
-                <span class="block font-bold">Delivery</span>
-                <span class="text-xs text-[var(--fg-muted)]">Charges Apply</span>
-              </div>
-            </label>
-          </div>
-        </div>
+<div class="p-8 border-b border-[var(--border)] bg-[var(--bg)] flex justify-between items-center">
+<h3 class="font-display text-2xl font-bold">Checkout</h3>
+<button onclick="closeCheckout()" class="p-2 hover:bg-gray-100 rounded-full"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg></button>
+</div>
 
-        <div id="deliveryFields" class="space-y-6 hidden">
-          <div>
-            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Delivery Address</label>
-            <textarea id="custAddress" rows="3" placeholder="Full Address with Landmark"></textarea>
-          </div>
-        </div>
+<form id="checkoutForm" class="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+
+<div>
+<label class="block text-sm font-medium text-[var(--fg)] mb-2">Full Name</label>
+<input type="text" id="custName" placeholder="Your Name" required>
+</div>
+
+<div>
+<label class="block text-sm font-medium text-[var(--fg)] mb-2">Phone Number</label>
+<input type="tel" id="custPhone" placeholder="+91 XXXXX XXXXX" required>
+</div>
+
+<div>
+<label class="block text-sm font-medium text-[var(--fg)] mb-2">Order Type</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="flex items-center gap-3 p-4 border border-[var(--border)] rounded cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
+<input type="radio" name="orderType" value="pickup" class="accent-[var(--accent)]" checked onchange="toggleDeliveryFields()">
+<div>
+<span class="block font-bold">Pickup</span>
+<span class="text-xs text-[var(--fg-muted)]">From Kitchen (Free)</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-4 border border-[var(--border)] rounded cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
+<input type="radio" name="orderType" value="delivery" class="accent-[var(--accent)]" onchange="toggleDeliveryFields()">
+<div>
+<span class="block font-bold">Delivery</span>
+<span class="text-xs text-[var(--fg-muted)]">Charges Apply</span>
+</div>
+</label>
+</div>
+</div>
+
+<div id="deliveryFields" class="space-y-6 hidden">
+<div>
+<label class="block text-sm font-medium text-[var(--fg)] mb-2">Delivery Address</label>
+<textarea id="custAddress" rows="3" placeholder="Full Address with Landmark"></textarea>
+</div>
+</div>
 
 
 <!-- changes in this given box -->
@@ -569,49 +569,49 @@
 
 <div style="max-width:900px;margin:auto;border:1px solid #e5e5e5;border-radius:12px;padding:18px;background:#ffffff;font-family:Arial,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,0.05);">
 
-  <div style="display:flex;flex-wrap:wrap;gap:15px;">
+<div style="display:flex;flex-wrap:wrap;gap:15px;">
 
-    <!-- Pickup -->
-    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
-      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">📍 Pickup</h4>
+<!-- Pickup -->
+<div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+<h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">📍 Pickup</h4>
 
-      <p style="margin:0 0 8px 0;font-size:12px;color:#555;line-height:1.5;">
-        B-501 Sarthi Residency, Naroda,<br>
-        Ahmedabad – 382330
-      </p>
+<p style="margin:0 0 8px 0;font-size:12px;color:#555;line-height:1.5;">
+B-501 Sarthi Residency, Naroda,<br>
+Ahmedabad – 382330
+</p>
 
-      <a href="https://maps.app.goo.gl/oQX7DULRNhTi8MC8A" target="_blank"
-        style="display:inline-block;font-size:12px;padding:6px 10px;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;">
-        Open Location
-      </a>
-    </div>
+<a href="https://maps.app.goo.gl/oQX7DULRNhTi8MC8A" target="_blank"
+style="display:inline-block;font-size:12px;padding:6px 10px;background:#2563eb;color:#fff;text-decoration:none;border-radius:6px;">
+Open Location
+</a>
+</div>
 
-    <!-- Delivery -->
-    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
-      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">🚚 Delivery</h4>
+<!-- Delivery -->
+<div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+<h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">🚚 Delivery</h4>
 
-      <p style="margin:0;font-size:12px;color:#555;line-height:1.5;">
-        Delivery charges extra.  
-        Order will be delivered by our delivery partner.
-      </p>
-    </div>
+<p style="margin:0;font-size:12px;color:#555;line-height:1.5;">
+Delivery charges extra.
+Order will be delivered by our delivery partner.
+</p>
+</div>
 
-    <!-- Payment -->
-    <div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
-      <h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">💳 Payment</h4>
+<!-- Payment -->
+<div style="flex:1 1 260px;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;">
+<h4 style="margin:0 0 6px 0;font-size:14px;color:#222;">💳 Payment</h4>
 
-      <p style="margin:0 0 8px 0;font-size:12px;color:#555;">
-        We accept <strong>Prepaid Orders Only</strong>.
-      </p>
+<p style="margin:0 0 8px 0;font-size:12px;color:#555;">
+We accept <strong>Prepaid Orders Only</strong>.
+</p>
 
-      <ol style="margin:0;padding-left:16px;font-size:12px;color:#555;line-height:1.5;">
-        <li>Submit the form to open WhatsApp.</li>
-        <li>Ask delivery charges before paying.</li>
-        <li>Send payment screenshot on WhatsApp.</li>
-      </ol>
-    </div>
+<ol style="margin:0;padding-left:16px;font-size:12px;color:#555;line-height:1.5;">
+<li>Submit the form to open WhatsApp.</li>
+<li>Ask delivery charges before paying.</li>
+<li>Send payment screenshot on WhatsApp.</li>
+</ol>
+</div>
 
-  </div>
+</div>
 
 </div>
 
@@ -622,348 +622,198 @@
 <!-- this up is my new changes -->
 
 
-        <button type="submit" class="btn-primary w-full justify-center mt-4 bg-green-600 hover:bg-green-700">
-          Send Order Request on WhatsApp
-        </button>
-      </form>
+<button type="submit" class="btn-primary w-full justify-center mt-4 bg-green-600 hover:bg-green-700">
+Send Order Request on WhatsApp
+</button>
+</form>
 
-    </div>
-  </div>
+</div>
+</div>
 
-  <script>
-    // --- MENU DATA ---
-    const menuCategories = [
-      { name: "Maggi", emoji: "🍜", items: [ { id: 1, name: "Plain Maggi", price: 40 }, { id: 2, name: "Butter Maggi", price: 60 }, { id: 3, name: "Cheese Maggi", price: 60 }, { id: 4, name: "Corn Maggi", price: 70 }, { id: 5, name: "Vegetable Maggi", price: 80 }, { id: 6, name: "Peri Peri Maggi", price: 80 } ] },
-      { name: "Pasta", emoji: "🍝", items: [ { id: 7, name: "Plain Pasta", price: 50 }, { id: 8, name: "Vegetable Masala Pasta", price: 60 }, { id: 9, name: "Cheese Pasta", price: 60 }, { id: 10, name: "Cheese Melt Pasta", price: 70 }, { id: 11, name: "Schezwan Pasta", price: 70 }, { id: 12, name: "Red Sauce Pasta", price: 70 }, { id: 13, name: "White Sauce Pasta", price: 80 } ] },
-      { name: "Waffles", emoji: "🧇", items: [ { id: 14, name: "Classic Waffle", price: 30 }, { id: 15, name: "Chocolate Waffle", price: 30 }, { id: 16, name: "KitKat Waffle", price: 40 }, { id: 17, name: "Dark Chocolate Waffle", price: 40 }, { id: 18, name: "White Chocolate Waffle", price: 40 }, { id: 19, name: "Choco Chips Waffle", price: 40 } ] },
-      { name: "Fruits & Beverages", emoji: "🍉", items: [ { id: 20, name: "Buttermilk", price: 20 }, { id: 21, name: "Fruit Mini Bowl", price: 70 }, { id: 22, name: "Fruit Big Bowl", price: 120 }, { id: 23, name: "Fruit Bowl", price: 150 } ] },
-      { name: "Sandwich", emoji: "🥪", items: [ { id: 24, name: "Vegetable Sandwich", price: 50 }, { id: 25, name: "Aloo Masala Sandwich", price: 50 }, { id: 26, name: "Bread & Butter", price: 40 }, { id: 27, name: "Paneer Sandwich", price: 70 }, { id: 28, name: "Cheese Paneer Sandwich", price: 70 }, { id: 29, name: "Cheese Garlic Sandwich", price: 80 }, { id: 30, name: "Garlic Bread", price: 100 } ] },
-      { name: "Breakfast", emoji: "☕", items: [ { id: 31, name: "Masala Chai (1 Cup)", price: 20 }, { id: 32, name: "Gujarati Bhakri (2 Pieces)", price: 40 }, { id: 33, name: "Sindhi Koki with Curd (2 Pieces)", price: 60 }, { id: 34, name: "Poha with Papad (1 Bowl)", price: 60 }, { id: 35, name: "Dal Puri (1 Bowl Dal + 4 Puris)", price: 60 }, { id: 36, name: "Aloo Paratha with Curd (2 Pieces)", price: 60 } ] },
-      { name: "Lunch", emoji: "🍛", items: [ { id: 37, name: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", price: 120 }, { id: 38, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", price: 150 }, { id: 39, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", price: 200 } ] },
-      { name: "Dinner", emoji: "🍽️", items: [ { id: 40, name: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", price: 120 }, { id: 41, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", price: 150 }, { id: 42, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", price: 200 } ] }
-    ];
+<script>
+// --- MENU DATA ---
+const menuCategories = [
+{ name: "Maggi", emoji: "🍜", items: [ { id: 1, name: "Plain Maggi", price: 40 }, { id: 2, name: "Butter Maggi", price: 60 }, { id: 3, name: "Cheese Maggi", price: 60 }, { id: 4, name: "Corn Maggi", price: 70 }, { id: 5, name: "Vegetable Maggi", price: 80 }, { id: 6, name: "Peri Peri Maggi", price: 80 } ] },
+{ name: "Pasta", emoji: "🍝", items: [ { id: 7, name: "Plain Pasta", price: 50 }, { id: 8, name: "Vegetable Masala Pasta", price: 60 }, { id: 9, name: "Cheese Pasta", price: 60 }, { id: 10, name: "Cheese Melt Pasta", price: 70 }, { id: 11, name: "Schezwan Pasta", price: 70 }, { id: 12, name: "Red Sauce Pasta", price: 70 }, { id: 13, name: "White Sauce Pasta", price: 80 } ] },
+{ name: "Waffles", emoji: "🧇", items: [ { id: 14, name: "Classic Waffle", price: 30 }, { id: 15, name: "Chocolate Waffle", price: 30 }, { id: 16, name: "KitKat Waffle", price: 40 }, { id: 17, name: "Dark Chocolate Waffle", price: 40 }, { id: 18, name: "White Chocolate Waffle", price: 40 }, { id: 19, name: "Choco Chips Waffle", price: 40 } ] },
+{ name: "Fruits & Beverages", emoji: "🍉", items: [ { id: 20, name: "Buttermilk", price: 20 }, { id: 21, name: "Fruit Mini Bowl", price: 70 }, { id: 22, name: "Fruit Big Bowl", price: 120 }, { id: 23, name: "Fruit Bowl", price: 150 } ] },
+{ name: "Sandwich", emoji: "🥪", items: [ { id: 24, name: "Vegetable Sandwich", price: 50 }, { id: 25, name: "Aloo Masala Sandwich", price: 50 }, { id: 26, name: "Bread & Butter", price: 40 }, { id: 27, name: "Paneer Sandwich", price: 70 }, { id: 28, name: "Cheese Paneer Sandwich", price: 70 }, { id: 29, name: "Cheese Garlic Sandwich", price: 80 }, { id: 30, name: "Garlic Bread", price: 100 } ] },
+{ name: "Breakfast", emoji: "☕", items: [ { id: 31, name: "Masala Chai (1 Cup)", price: 20 }, { id: 32, name: "Gujarati Bhakri (2 Pieces)", price: 40 }, { id: 33, name: "Sindhi Koki with Curd (2 Pieces)", price: 60 }, { id: 34, name: "Poha with Papad (1 Bowl)", price: 60 }, { id: 35, name: "Dal Puri (1 Bowl Dal + 4 Puris)", price: 60 }, { id: 36, name: "Aloo Paratha with Curd (2 Pieces)", price: 60 } ] },
+{ name: "Lunch", emoji: "🍛", items: [ { id: 37, name: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", price: 120 }, { id: 38, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", price: 150 }, { id: 39, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", price: 200 } ] },
+{ name: "Dinner", emoji: "🍽️", items: [ { id: 40, name: "1 Sabji + 2 Roti + Rice + Dal + Pickle + Salad", price: 120 }, { id: 41, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad", price: 150 }, { id: 42, name: "2 Sabji + 4 Roti + Rice + Dal + Pickle + Salad + Papad + Buttermilk", price: 200 } ] }
+];
 
-    let cart = [];
-    const menuContainer = document.getElementById('menuContainer');
-    const cartSidebar = document.getElementById('cartSidebar');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const navCartCount = document.getElementById('navCartCount');
-    const floatCartCount = document.getElementById('floatCartCount');
-    const checkoutBtnSidebar = document.getElementById('checkoutBtnSidebar');
-    
-    function renderMenu() {
-      menuContainer.innerHTML = menuCategories.map((category, index) => `
-        <div class="accordion-item ${index === 0 ? 'active' : ''}">
-          <button class="accordion-header" onclick="toggleAccordion(${index})">
-            <div class="flex items-center gap-4">
-               <span class="text-3xl">${category.emoji}</span>
-               <span class="font-display text-2xl font-bold">${category.name}</span>
-            </div>
-            <svg class="accordion-icon w-6 h-6 text-[var(--fg-muted)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="pl-4 pr-4 pb-4 pt-2">
-              ${category.items.map(item => `
-                <div class="menu-list-item">
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-medium text-[var(--fg)]">${item.name}</h4>
-                  </div>
-                  <div class="flex items-center gap-6 ml-4">
-                    <p class="font-bold text-[var(--accent)] whitespace-nowrap w-16 text-right">₹${item.price}</p>
-                    <button onclick="addToCart(${item.id})" class="px-4 py-1.5 bg-[var(--fg)] text-white text-sm font-medium rounded hover:bg-[var(--accent)] transition-colors">
-                      Add
-                    </button>
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
+let cart = [];
+const menuContainer = document.getElementById('menuContainer');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.getElementById('cartOverlay');
+const navCartCount = document.getElementById('navCartCount');
+const floatCartCount = document.getElementById('floatCartCount');
+const checkoutBtnSidebar = document.getElementById('checkoutBtnSidebar');
 
-    function toggleAccordion(index) {
-      const items = document.querySelectorAll('.accordion-item');
-      items.forEach((item, i) => {
-        if (i === index) item.classList.toggle('active');
-        else item.classList.remove('active');
-      });
-    }
+function renderMenu() {
+menuContainer.innerHTML = menuCategories.map((category, index) => `
+<div class="accordion-item ${index === 0 ? 'active' : ''}">
+<button class="accordion-header" onclick="toggleAccordion(${index})">
+<div class="flex items-center gap-4">
+<span class="text-3xl">${category.emoji}</span>
+<span class="font-display text-2xl font-bold">${category.name}</span>
+</div>
+<svg class="accordion-icon w-6 h-6 text-[var(--fg-muted)]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+</button>
+<div class="accordion-content">
+<div class="pl-4 pr-4 pb-4 pt-2">
+${category.items.map(item => `
+<div class="menu-list-item">
+<div class="flex-1 min-w-0">
+<h4 class="font-medium text-[var(--fg)]">${item.name}</h4>
+</div>
+<div class="flex items-center gap-6 ml-4">
+<p class="font-bold text-[var(--accent)] whitespace-nowrap w-16 text-right">₹${item.price}</p>
+<button onclick="addToCart(${item.id})" class="px-4 py-1.5 bg-[var(--fg)] text-white text-sm font-medium rounded hover:bg-[var(--accent)] transition-colors">
+Add
+</button>
+</div>
+</div>
+`).join('')}
+</div>
+</div>
+</div>
+`).join('');
+}
 
-    function findItem(id) {
-       for (let cat of menuCategories) {
-         const found = cat.items.find(item => item.id === id);
-         if (found) return found;
-       }
-       return null;
-    }
+function toggleAccordion(index) {
+const items = document.querySelectorAll('.accordion-item');
+items.forEach((item, i) => {
+if (i === index) item.classList.toggle('active');
+else item.classList.remove('active');
+});
+}
 
-    function addToCart(id) {
-      const item = findItem(id);
-      if(!item) return;
-      const existing = cart.find(i => i.id === id);
-      if (existing) existing.qty += 1;
-      else cart.push({ ...item, qty: 1 });
-      updateCartUI();
-      floatCartCount.classList.add('pulse-animation');
-      setTimeout(() => floatCartCount.classList.remove('pulse-animation'), 400);
-    }
+function findItem(id) {
+for (let cat of menuCategories) {
+const found = cat.items.find(item => item.id === id);
+if (found) return found;
+}
+return null;
+}
 
-    function removeFromCart(id) {
-      const index = cart.findIndex(i => i.id === id);
-      if (index > -1) {
-        if (cart[index].qty > 1) cart[index].qty -= 1;
-        else cart.splice(index, 1);
-      }
-      updateCartUI();
-    }
+function addToCart(id) {
+const item = findItem(id);
+if(!item) return;
+const existing = cart.find(i => i.id === id);
+if (existing) existing.qty += 1;
+else cart.push({ ...item, qty: 1 });
+updateCartUI();
+floatCartCount.classList.add('pulse-animation');
+setTimeout(() => floatCartCount.classList.remove('pulse-animation'), 400);
+}
 
-    function updateCartUI() {
-      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-      if (totalItems > 0) {
-         navCartCount.style.opacity = 1; floatCartCount.style.opacity = 1; checkoutBtnSidebar.disabled = false;
-      } else {
-         navCartCount.style.opacity = 0; floatCartCount.style.opacity = 0; checkoutBtnSidebar.disabled = true;
-      }
-      navCartCount.textContent = totalItems; floatCartCount.textContent = totalItems;
-      const cartItemsContainer = document.getElementById('cartItems');
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = `<div class="text-center py-16"><svg class="w-24 h-24 mx-auto text-gray-200 mb-6" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg><p class="text-[var(--fg-muted)] font-medium text-lg">Your bag is empty</p></div>`;
-      } else {
-        cartItemsContainer.innerHTML = cart.map(item => `
-          <div class="flex gap-4 mb-6 pb-6 border-b border-[var(--border)]">
-            <div class="flex-1">
-              <h4 class="font-bold text-[var(--fg)] mb-1">${item.name}</h4>
-              <p class="text-sm text-[var(--accent)]">₹${item.price}</p>
-              <div class="flex items-center gap-3 mt-2">
-                <button onclick="removeFromCart(${item.id})" class="w-8 h-8 border border-[var(--border)] rounded flex items-center justify-center hover:bg-gray-100">-</button>
-                <span class="w-8 text-center font-bold">${item.qty}</span>
-                <button onclick="addToCart(${item.id})" class="w-8 h-8 border border-[var(--border)] rounded flex items-center justify-center hover:bg-gray-100">+</button>
-              </div>
-            </div>
-            <div class="text-right"><p class="font-bold">₹${item.price * item.qty}</p></div>
-          </div>
-        `).join('');
-      }
-    }
+function removeFromCart(id) {
+const index = cart.findIndex(i => i.id === id);
+if (index > -1) {
+if (cart[index].qty > 1) cart[index].qty -= 1;
+else cart.splice(index, 1);
+}
+updateCartUI();
+}
 
-    function toggleCart() {
-      cartSidebar.classList.toggle('open'); cartOverlay.classList.toggle('open');
-      document.body.style.overflow = cartSidebar.classList.contains('open') ? 'hidden' : '';
-    }
+function updateCartUI() {
+const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+if (totalItems > 0) {
+navCartCount.style.opacity = 1; floatCartCount.style.opacity = 1; checkoutBtnSidebar.disabled = false;
+} else {
+navCartCount.style.opacity = 0; floatCartCount.style.opacity = 0; checkoutBtnSidebar.disabled = true;
+}
+navCartCount.textContent = totalItems; floatCartCount.textContent = totalItems;
+const cartItemsContainer = document.getElementById('cartItems');
+if (cart.length === 0) {
+cartItemsContainer.innerHTML = `<div class="text-center py-16"><svg class="w-24 h-24 mx-auto text-gray-200 mb-6" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg><p class="text-[var(--fg-muted)] font-medium text-lg">Your bag is empty</p></div>`;
+} else {
+cartItemsContainer.innerHTML = cart.map(item => `
+<div class="flex gap-4 mb-6 pb-6 border-b border-[var(--border)]">
+<div class="flex-1">
+<h4 class="font-bold text-[var(--fg)] mb-1">${item.name}</h4>
+<p class="text-sm text-[var(--accent)]">₹${item.price}</p>
+<div class="flex items-center gap-3 mt-2">
+<button onclick="removeFromCart(${item.id})" class="w-8 h-8 border border-[var(--border)] rounded flex items-center justify-center hover:bg-gray-100">-</button>
+<span class="w-8 text-center font-bold">${item.qty}</span>
+<button onclick="addToCart(${item.id})" class="w-8 h-8 border border-[var(--border)] rounded flex items-center justify-center hover:bg-gray-100">+</button>
+</div>
+</div>
+<div class="text-right"><p class="font-bold">₹${item.price * item.qty}</p></div>
+</div>
+`).join('');
+}
+}
 
-    function observeElements() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    }
-    
-    function openCheckout() {
-      if(cart.length === 0) return;
-      toggleCart(); 
-      document.getElementById('checkoutOverlay').classList.add('open');
-      const modal = document.getElementById('checkoutModal');
-      modal.classList.remove('invisible', 'opacity-0');
-      modal.querySelector('div').classList.remove('scale-95');
-      document.body.style.overflow = 'hidden';
-    }
+function toggleCart() {
+cartSidebar.classList.toggle('open'); cartOverlay.classList.toggle('open');
+document.body.style.overflow = cartSidebar.classList.contains('open') ? 'hidden' : '';
+}
 
-    function closeCheckout() {
-      document.getElementById('checkoutOverlay').classList.remove('open');
-      const modal = document.getElementById('checkoutModal');
-      modal.classList.add('invisible', 'opacity-0');
-      modal.querySelector('div').classList.add('scale-95');
-      document.body.style.overflow = '';
-    }
+function observeElements() {
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
 
-   Here is the improved and responsive version of the checkout section. I have replaced the rigid inline-styled HTML with clean **Tailwind CSS** classes that match your site's design. 
+function openCheckout() {
+if(cart.length === 0) return;
+toggleCart();
+document.getElementById('checkoutOverlay').classList.add('open');
+const modal = document.getElementById('checkoutModal');
+modal.classList.remove('invisible', 'opacity-0');
+modal.querySelector('div').classList.remove('scale-95');
+document.body.style.overflow = 'hidden';
+}
 
-I also updated the logic so the information boxes switch dynamically based on whether the user selects "Pickup" or "Delivery".
+function closeCheckout() {
+document.getElementById('checkoutOverlay').classList.remove('open');
+const modal = document.getElementById('checkoutModal');
+modal.classList.add('invisible', 'opacity-0');
+modal.querySelector('div').classList.add('scale-95');
+document.body.style.overflow = '';
+}
 
-### Key Changes Made:
-1.  **Dynamic Info Cards:** When you select **Pickup**, it shows the map link and address. When you select **Delivery**, it shows delivery instructions.
-2.  **Responsive Layout:** The form padding and layout now adapt better to small mobile screens (using `p-4 sm:p-8`).
-3.  **Cleaner Code:** Replaced the fixed inline styles with utility classes for consistency.
+function toggleDeliveryFields() {
+const isDelivery = document.querySelector('input[name="orderType"]:checked').value === 'delivery';
+const deliveryFields = document.getElementById('deliveryFields');
+if(isDelivery) { deliveryFields.classList.remove('hidden'); document.getElementById('custAddress').required = true; }
+else { deliveryFields.classList.add('hidden'); document.getElementById('custAddress').required = false; }
+}
 
-### 1. Update the HTML
-Find the `<!-- Checkout Modal -->` section in your code and replace the entire `<div id="checkoutModal"...>...</div>` block with this new version:
+document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+e.preventDefault();
+const name = document.getElementById('custName').value;
+const phone = document.getElementById('custPhone').value;
+const orderType = document.querySelector('input[name="orderType"]:checked').value;
+const address = orderType === 'delivery' ? document.getElementById('custAddress').value : 'Pickup from Kitchen';
 
-```html
-  <!-- Checkout Modal -->
-  <div id="checkoutOverlay" class="modal-overlay" onclick="closeCheckout()"></div>
-  <div id="checkoutModal" class="fixed inset-0 z-[1005] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
-    <div class="bg-white w-full max-w-lg rounded-lg shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
-      
-      <div class="p-4 sm:p-6 border-b border-[var(--border)] bg-[var(--bg)] flex justify-between items-center">
-        <h3 class="font-display text-xl sm:text-2xl font-bold">Checkout</h3>
-        <button onclick="closeCheckout()" class="p-2 hover:bg-gray-100 rounded-full">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
+let message = `👑 *New Order Request - The Cloud Queen Kitchen*\n\n`;
+message += `*Customer:* ${name}\n*Phone:* ${phone}\n*Order Type:* ${orderType.toUpperCase()}\n`;
+if(orderType === 'delivery') { message += `*Address:* ${address}\n*Action Required:* Please confirm delivery charges.\n`; }
+else { message += `*Pickup:* From Kitchen\n`; }
+message += `\n*Items:*\n`;
+cart.forEach(item => { message += `• ${item.name} x ${item.qty} = ₹${item.price * item.qty}\n`; });
+const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+message += `\n*Subtotal:* ₹${subtotal}\n`;
+message += `\n_Payment: I will pay via UPI/Bank Transfer after confirmation._`;
+const whatsappUrl = `https://wa.me/919510917723?text=${encodeURIComponent(message)}`;
+window.open(whatsappUrl, '_blank');
+cart = []; updateCartUI(); closeCheckout(); document.getElementById('checkoutForm').reset(); toggleDeliveryFields();
+});
 
-      <form id="checkoutForm" class="p-4 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto">
-        
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-1.5">Full Name</label>
-          <input type="text" id="custName" placeholder="Your Name" required>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-1.5">Phone Number</label>
-          <input type="tel" id="custPhone" placeholder="+91 XXXXX XXXXX" required>
-        </div>
-
-        <!-- Order Type Selection -->
-        <div>
-          <label class="block text-sm font-medium text-[var(--fg)] mb-2">Order Type</label>
-          <div class="grid grid-cols-2 gap-3">
-            <label class="flex items-center gap-3 p-3 border border-[var(--border)] rounded-lg cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
-              <input type="radio" name="orderType" value="pickup" class="accent-[var(--accent)] w-4 h-4" checked onchange="toggleDeliveryFields()">
-              <div>
-                <span class="block font-semibold text-sm">Pickup</span>
-                <span class="text-xs text-[var(--fg-muted)]">Free</span>
-              </div>
-            </label>
-            <label class="flex items-center gap-3 p-3 border border-[var(--border)] rounded-lg cursor-pointer hover:border-[var(--accent)] transition-colors order-type-option">
-              <input type="radio" name="orderType" value="delivery" class="accent-[var(--accent)] w-4 h-4" onchange="toggleDeliveryFields()">
-              <div>
-                <span class="block font-semibold text-sm">Delivery</span>
-                <span class="text-xs text-[var(--fg-muted)]">Charges Apply</span>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Dynamic Info & Address Section -->
-        <div id="deliveryFields" class="space-y-4 hidden">
-          <div>
-            <label class="block text-sm font-medium text-[var(--fg)] mb-1.5">Delivery Address</label>
-            <textarea id="custAddress" rows="2" placeholder="Full Address with Landmark"></textarea>
-          </div>
-        </div>
-
-        <!-- Responsive Info Cards -->
-        <div class="space-y-3 text-sm">
-            
-            <!-- Pickup Info (Visible by default) -->
-            <div id="pickupInfoCard" class="bg-[var(--bg-alt)] border border-[var(--border)] rounded-lg p-4 transition-all">
-                <div class="flex items-start gap-3">
-                    <span class="text-xl">📍</span>
-                    <div class="flex-1">
-                        <h4 class="font-bold text-[var(--fg)]">Pickup Location</h4>
-                        <p class="text-[var(--fg-muted)] text-xs mt-1 leading-relaxed">
-                            B-501 Sarthi Residency, Behind Vitthal Plaza, Naroda, Ahmedabad – 382330
-                        </p>
-                        <a href="https://maps.app.goo.gl/oQX7DULRNhTi8MC8A" target="_blank" class="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-blue-600 hover:underline bg-blue-50 px-2 py-1 rounded">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-                            Open in Maps
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Delivery Info (Hidden by default) -->
-            <div id="deliveryInfoCard" class="bg-[var(--bg-alt)] border border-[var(--border)] rounded-lg p-4 transition-all hidden">
-                <div class="flex items-start gap-3">
-                    <span class="text-xl">🚚</span>
-                    <div>
-                        <h4 class="font-bold text-[var(--fg)]">Delivery Details</h4>
-                        <p class="text-[var(--fg-muted)] text-xs mt-1 leading-relaxed">
-                            Delivery charges are extra based on location. Order will be delivered by our partner. Please confirm charges on WhatsApp before paying.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Payment Info (Always Visible) -->
-            <div class="bg-amber-50 border border-[var(--gold)]/30 rounded-lg p-4">
-                <div class="flex items-start gap-3">
-                    <span class="text-xl">💳</span>
-                    <div>
-                        <h4 class="font-bold text-[var(--fg)]">Payment Method</h4>
-                        <p class="text-[var(--fg-muted)] text-xs mt-1 mb-2">
-                            We accept <strong class="text-[var(--fg)]">Prepaid Orders Only</strong>.
-                        </p>
-                        <ol class="list-decimal list-inside text-[var(--fg-muted)] text-xs space-y-0.5">
-                            <li>Submit form to open WhatsApp.</li>
-                            <li>Confirm total & delivery charges.</li>
-                            <li>Send payment screenshot on WhatsApp.</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" class="btn-primary w-full justify-center mt-2 bg-green-600 hover:bg-green-700">
-          Send Order Request on WhatsApp
-        </button>
-      </form>
-
-    </div>
-  </div>
-```
-
-### 2. Update the JavaScript
-Find the `toggleDeliveryFields()` function in your `<script>` tag and replace it with this updated version. This handles the showing/hiding of the correct address and information cards.
-
-
-    function toggleDeliveryFields() {
-      const isDelivery = document.querySelector('input[name="orderType"]:checked').value === 'delivery';
-      const deliveryFields = document.getElementById('deliveryFields');
-      const pickupInfo = document.getElementById('pickupInfoCard');
-      const deliveryInfo = document.getElementById('deliveryInfoCard');
-      
-      if(isDelivery) {
-        // Show Delivery Inputs & Info
-        deliveryFields.classList.remove('hidden');
-        deliveryInfo.classList.remove('hidden');
-        document.getElementById('custAddress').required = true;
-        
-        // Hide Pickup Info
-        pickupInfo.classList.add('hidden');
-      } else {
-        // Hide Delivery Inputs & Info
-        deliveryFields.classList.add('hidden');
-        deliveryInfo.classList.add('hidden');
-        document.getElementById('custAddress').required = false;
-        
-        // Show Pickup Info
-        pickupInfo.classList.remove('hidden');
-      }
-    }
-
-    document.getElementById('checkoutForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('custName').value;
-      const phone = document.getElementById('custPhone').value;
-      const orderType = document.querySelector('input[name="orderType"]:checked').value;
-      const address = orderType === 'delivery' ? document.getElementById('custAddress').value : 'Pickup from Kitchen';
-
-      let message = `👑 *New Order Request - The Cloud Queen Kitchen*\n\n`;
-      message += `*Customer:* ${name}\n*Phone:* ${phone}\n*Order Type:* ${orderType.toUpperCase()}\n`;
-      if(orderType === 'delivery') { message += `*Address:* ${address}\n*Action Required:* Please confirm delivery charges.\n`; }
-      else { message += `*Pickup:* From Kitchen\n`; }
-      message += `\n*Items:*\n`;
-      cart.forEach(item => { message += `• ${item.name} x ${item.qty} = ₹${item.price * item.qty}\n`; });
-      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      message += `\n*Subtotal:* ₹${subtotal}\n`;
-      message += `\n_Payment: I will pay via UPI/Bank Transfer after confirmation._`;
-      const whatsappUrl = `https://wa.me/919510917723?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-      cart = []; updateCartUI(); closeCheckout(); document.getElementById('checkoutForm').reset(); toggleDeliveryFields();
-    });
-
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    let menuOpen = false;
-    menuBtn.addEventListener('click', () => { menuOpen = !menuOpen; mobileMenu.style.transform = menuOpen ? 'translateX(0)' : 'translateX(100%)'; });
-    document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => { menuOpen = false; mobileMenu.style.transform = 'translateX(100%)'; }); });
-    window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('loaded'); }, 1500); });
-    renderMenu(); updateCartUI(); observeElements();
-  </script>
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+let menuOpen = false;
+menuBtn.addEventListener('click', () => { menuOpen = !menuOpen; mobileMenu.style.transform = menuOpen ? 'translateX(0)' : 'translateX(100%)'; });
+document.querySelectorAll('.mobile-link').forEach(link => { link.addEventListener('click', () => { menuOpen = false; mobileMenu.style.transform = 'translateX(100%)'; }); });
+window.addEventListener('load', () => { setTimeout(() => { document.getElementById('preloader').classList.add('loaded'); }, 1500); });
+renderMenu(); updateCartUI(); observeElements();
+</script>
 </body>
 </html>
-
 
 
